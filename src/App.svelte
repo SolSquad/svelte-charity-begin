@@ -1,20 +1,21 @@
 <script>
-  import { onMount } from 'svelte'
-  export let name
-  export let message
-  onMount(async () => {
-    let data = await (await fetch('/api')).json()
-    message = data.msg
-    console.log('MESSAGE: ', message)
-  })
+  import router from 'page'
+
+  // Include our Routes
+  import Home from './routes/Home.svelte'
+
+  // Variables
+  let page
+  let params
+
+  // Set up the pages to watch for
+  router('/', () => (page = Home))
+
+  // Set up the router to start and actively watch for changes
+  router.start()
 </script>
 
-<main>
-  <h1>Hello {name}!</h1>
-  <h2>{message}</h2>
-  <h3>Change me!</h3>
-  <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
+<svelte:component this="{page}" params="{params}" />
 
 <style>
   main {
