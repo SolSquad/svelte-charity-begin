@@ -29,6 +29,7 @@
     "tiny-json-http": "^7.3.0"
   },
   "dependencies": {
+    "newsapi": "^2.4.1",
     "page": "^1.11.6"
   }
 }
